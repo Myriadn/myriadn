@@ -1,5 +1,5 @@
 <h1 align="center">Hi 👋, I'm Anas</h1>
-<h3 align="center">I have an interest in Software Engineering, especially related to Game Development.</h3>
+<h3 align="center">suka ngelurking</h3>
 
 <p align="left"> <img src="https://komarev.com/ghpvc/?username=myriadn&label=Profile%20views&color=0e75b6&style=flat" alt="myriadn" /> </p>
 
