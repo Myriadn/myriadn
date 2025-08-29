@@ -3,6 +3,10 @@
 #### _What I have touched over the past 7 days_ 
 
 ```text
-{{ wakatimeDoubleCategoryBar "💾 Languages:" wakatimeData.Languages "💼 Projects:" wakatimeData.Projects 5 }}
+💾 Languages:
+{{ wakatimeData.Languages | wakatimeCategoryBar 5 }}
+
+💼 Projects:
+{{ wakatimeData.Projects | wakatimeCategoryBar 5 }}
 
 Total: {{ wakatimeData.HumanReadableTotal }}
