@@ -18,6 +18,8 @@ jobs:
       - uses: charmbracelet/readme-scribe@master
         env:
           GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
+          WAKATIME_URL: ${{ secrets.WAKATIME_URL }}
+          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
         with:
           template: "readme.tpl"
           writeTo: "README.md"
