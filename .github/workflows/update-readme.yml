@@ -32,7 +32,7 @@ jobs:
           mv markscribe ../markscribe_custom
 
       - name: Generate README
-        run: ./markscribe_custom --write "README.md" "readme.tpl"
+        run: markscribe -write README.md template.tpl
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
