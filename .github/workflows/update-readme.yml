@@ -1,35 +1,45 @@
-name: Update README
+name: Update README with Custom Markscribe
 
 on:
   push:
+    branches:
+      - main
   schedule:
-    - cron: "0 */1 * * *"
+    - cron: '0 * * * *'
+  workflow_dispatch:
 
 jobs:
-  markscribe:
+  update-readme:
     runs-on: ubuntu-latest
-
     permissions:
       contents: write
 
     steps:
-      - uses: actions/checkout@master
+      - name: Checkout Your Repository
+        uses: actions/checkout@v4
 
-      - uses: charmbracelet/readme-scribe@master
-        env:
-          GITHUB_TOKEN: ${{ secrets.PERSONAL_GITHUB_TOKEN }}
-          WAKATIME_URL: ${{ secrets.WAKATIME_URL }}
-          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+      - name: Setup Go
+        uses: actions/setup-go@v5
         with:
-          template: "readme.tpl"
-          writeTo: "README.md"
+          go-version: '1.21'
 
-      - uses: stefanzweifel/git-auto-commit-action@v4
+      - name: Build Custom Markscribe
+        run: |
+          git clone https://github.com/taciturnaxolotl/markscribe.git
+          cd markscribe
+          go build .
+          # Pindahkan program yang sudah jadi ke direktori utama
+          mv markscribe ../markscribe_custom
+
+      - name: Generate README
+        run: ./markscribe_custom --write "README.md" "readme.tpl"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+          WAKATIME_URL: ${{ secrets.WAKATIME_URL }}
+      
+      - name: Commit and Push Changes
+        uses: stefanzweifel/git-auto-commit-action@v5
         with:
-          commit_message: Update generated README
+          commit_message: "docs: Update README with WakaTime stats"
           branch: main
-          commit_user_name: readme-scribe 🤖
-          commit_user_email: actions@github.com
-          commit_author: readme-scribe 🤖 <actions@github.com>
