@@ -14,7 +14,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v3
       - name: Update README
-        uses: charmbracelet/readme-scribe@main
+        uses: charmbracelet/readme-scribe@master
         with:
           template: "readme.tpl"
           write: "README.md"
