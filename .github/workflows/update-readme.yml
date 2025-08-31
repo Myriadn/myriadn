@@ -1,45 +1,45 @@
-name: Update README with Custom Markscribe
+# name: Update README with Custom Markscribe
 
-on:
-  push:
-    branches:
-      - main
-  schedule:
-    - cron: '0 * * * *'
-  workflow_dispatch:
+# on:
+#   push:
+#     branches:
+#       - main
+#   schedule:
+#     - cron: '0 * * * *'
+#   workflow_dispatch:
 
-jobs:
-  update-readme:
-    runs-on: ubuntu-latest
-    permissions:
-      contents: write
+# jobs:
+#   update-readme:
+#     runs-on: ubuntu-latest
+#     permissions:
+#       contents: write
 
-    steps:
-      - name: Checkout Your Repository
-        uses: actions/checkout@v4
+#     steps:
+#       - name: Checkout Your Repository
+#         uses: actions/checkout@v4
 
-      - name: Setup Go
-        uses: actions/setup-go@v5
-        with:
-          go-version: '1.21'
+#       - name: Setup Go
+#         uses: actions/setup-go@v5
+#         with:
+#           go-version: '1.21'
 
-      - name: Build Custom Markscribe
-        run: |
-          git clone https://github.com/taciturnaxolotl/markscribe.git
-          cd markscribe
-          go build .
-          # Pindahkan program yang sudah jadi ke direktori utama
-          mv markscribe ../markscribe_custom
+#       - name: Build Custom Markscribe
+#         run: |
+#           git clone https://github.com/taciturnaxolotl/markscribe.git
+#           cd markscribe
+#           go build .
+#           # Pindahkan program yang sudah jadi ke direktori utama
+#           mv markscribe ../markscribe_custom
 
-      - name: Generate README
-        run: ./markscribe_custom --write "README.md" "readme.tpl"
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
-          WAKATIME_URL: ${{ secrets.WAKATIME_URL }}
+#       - name: Generate README
+#         run: ./markscribe_custom --write "README.md" "readme.tpl"
+#         env:
+#           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+#           WAKATIME_API_KEY: ${{ secrets.WAKATIME_API_KEY }}
+#           WAKATIME_URL: ${{ secrets.WAKATIME_URL }}
       
-      - name: Commit and Push Changes
-        uses: stefanzweifel/git-auto-commit-action@v5
-        with:
-          commit_message: "docs: Update README with WakaTime stats"
-          branch: main
+#       - name: Commit and Push Changes
+#         uses: stefanzweifel/git-auto-commit-action@v5
+#         with:
+#           commit_message: "docs: Update README with WakaTime stats"
+#           branch: main
