@@ -11,6 +11,8 @@ on:
 jobs:
   update-gist:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     steps:
       - uses: anmol098/waka-readme-stats@master
         with:
