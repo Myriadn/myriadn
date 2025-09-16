@@ -12,7 +12,3 @@ Lua                      2 mins              ░░░░░░░░░░░�
 
 
 <!--END_SECTION:waka-->
-
-OR MOSTLY
-
-<figure><embed src="https://wakatime.com/share/@e8695584-87d3-4ecd-94ac-a08d0c6f6502/8d271e99-cc27-4065-94bc-f887ee312c74.svg"></embed></figure>
